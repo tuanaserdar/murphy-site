@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Murphy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+:root {
+  --text:#111;
+  --soft:#555;
+  --panel:rgba(255,255,255,.88);
+  --border:rgba(0,0,0,.12);
+  --shadow:0 18px 45px rgba(0,0,0,.25);
+  --radius:20px;
+}
+
+* { box-sizing:border-box; }
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--text);
+  line-height:1.65;
+  background:url("ninja star.png") repeat fixed;
+}
+
+.overlay{
+  min-height:100vh;
+  background:rgba(255,255,255,.55);
+  padding:24px 18px 40px;
+}
+
+/* Top bar with BIG logo */
+.topbar{
+  max-width:1150px;
+  margin:0 auto 16px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.logo{
+  padding:18px 22px;
+  border-radius:999px;
+  background: rgba(255,255,255,.75);
+  border:1px solid var(--border);
+  box-shadow: 0 12px 28px rgba(0,0,0,.2);
+}
+
+.logo img{
+  height:130px;   /* BIG logo */
+  width:auto;
+  display:block;
+}
+
+.layout{
+  max-width:1150px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1.6fr .9fr;
+  gap:20px;
+  align-items:start;
+}
+
+/* Card */
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+/* LEFT */
+.main{
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+h1{
+  margin:0;
+  font-size:clamp(32px,4vw,46px);
+  letter-spacing:-.02em;
+}
+
+.subtitle{
+  margin:0;
+  color:var(--soft);
+  max-width:70ch;
+}
+
+/* Smaller hero */
+.hero{
+  height:68vh;
+  min-height:480px;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background: rgba(0,0,0,.04);
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.story{
+  max-width:78ch;
+  font-size:16px;
+}
+
+.note{
+  margin-top:6px;
+  padding:18px 20px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.75);
+  font-style: italic;
+  color: #333;
+  max-width:78ch;
+}
+
+/* RIGHT */
+.side{
+  position:sticky;
+  top:18px;
+  padding:18px;
+}
+
+.side h2{
+  margin:0 0 12px;
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--soft);
+}
+
+.traits{
+  display:grid;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.trait{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.7);
+}
+
+.trait strong{
+  display:block;
+  margin-bottom:4px;
+}
+
+/* Reach us */
+.reach{
+  padding:14px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.68);
+}
+
+.reachTitle{
+  margin:0 0 10px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+.contactGrid{
+  display:grid;
+  gap:10px;
+}
+
+.contactItem{
+  padding:12px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.78);
+  font-size:14px;
+}
+
+.contactLabel{
+  display:block;
+  font-size:12px;
+  color:var(--soft);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+
+.contactItem a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0,0,0,.18);
+}
+
+.contactItem a:hover{
+  border-bottom-color: rgba(0,0,0,.45);
+}
+
+/* Footer */
+.footerWrap{
+  max-width:1150px;
+  margin:18px auto 0;
+  padding:0 2px;
+}
+
+.footer{
+  display:flex;
+  justify-content:center;
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.02em;
+  color: rgba(0,0,0,.55);
+  padding:12px 10px;
+  border-radius:14px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(0,0,0,.10);
+  backdrop-filter: blur(10px);
+}
+
+/* MOBILE */
+@media (max-width:900px){
+  .layout{ grid-template-columns:1fr; }
+  .side{ position:static; }
+  .hero{ height:70vh; min-height:520px; }
+  .topbar{ justify-content:center; }
+  .logo img{ height:120px; }
+}
+</style>
+</head>
+
+<body>
+  <div class="overlay">
+
+    <!-- LOGO (top) -->
+    <header class="topbar">
+      <div class="logo" aria-label="Murphy logo">
+        <img src="Murphy_logo_png.png" alt="Murphy logo" />
+      </div>
+    </header>
+
+    <div class="layout">
+
+      <!-- LEFT CONTENT -->
+      <main class="card main">
+        <h1>Murphy</h1>
+        <p class="subtitle">Murphy is a calm, gentle ninja turtle searching for a new home and a lifelong companion.</p>
+
+        <section class="hero" aria-label="Murphy photo">
+          <img src="Murphy_beinghold.PNG" alt="Murphy being held" />
+        </section>
+
+        <div class="story">
+          <p><strong>My name is Murphy. Let me tell you my story first.</strong></p>
+
+          <p>The glass was cold. So cold I could feel it through my shell. Above me was a shadow heavier than the sound of wings: an owl. It left me there, on that bathroom window. This wasn't training. It was abandonment. Maybe it was meant to be the end.</p>
+
+          <p>And then... the window opened.</p>
+
+          <p>I fell.</p>
+
+          <p>From the second floor to the garden. A moment of weightlessness, then earth. Hard, cold, but safe. That night, under the leaves, completely alone, I thought about survival. I learned never to fall from a window again, how to shelter from the rain, how to find the warmest spot of sun. There was no flock to protect me, no mother to guide me, no friend to fight alongside. There was only me. The silence inside my own shell, and the vast world outside.</p>
+
+          <p>The neighborhood became my dojo. I explored every cracked path, every safe corner, every puddle, all by myself. My slowness made me invisible. My patience made me strong. My survival became my greatest triumph.</p>
+
+          <p>But now, I want to change. I don't just want to survive anymore; I want to live. I want to see the world not from a cold window ledge, but from the warm floor of a safe home. I want to sleep not alone, but knowing I have a friend beside me.</p>
+
+          <p><strong>That's why I'm here. To meet you.</strong></p>
+        </div>
+
+        <div class="note">
+          Murphy is not a "pet"; he is a life companion. His past is shaped by solitude, his personality forged in depth.
+          Understanding him means embracing slowness and silence. In return, he will bring you a rare loyalty, a serene presence,
+          and the grand survival story of one small turtle.
+        </div>
+      </main>
+
+      <!-- RIGHT CONTENT -->
+      <aside class="card side">
+
+        <h2>Murphy's Personality</h2>
+
+        <div class="traits">
+          <div class="trait">
+            <strong>A Quiet Observer</strong>
+            I don't speak much. But I see everything. I take my time to understand the world around me.
+          </div>
+
+          <div class="trait">
+            <strong>Independent and Resilient</strong>
+            I've weathered the toughest conditions alone. I don't need anyone, but I can choose to be by your side.
+          </div>
+
+          <div class="trait">
+            <strong>Worthy of Trust</strong>
+            Trust is everything to me. Once you've earned my trust, I bond with unwavering, unconditional loyalty.
+          </div>
+
+          <div class="trait">
+            <strong>A Lover of Order and Peace</strong>
+            I don't like chaos or loud noises. I prefer calm, predictable days.
+          </div>
+
+          <div class="trait">
+            <strong>A Curious Explorer (At My Own Pace)</strong>
+            I observe first, then explore—slowly and deliberately—when I feel safe.
+          </div>
+
+          <div class="trait">
+            <strong>A Grateful Soul</strong>
+            I never forget your care. With my eyes, I say: “Thank you.”
+          </div>
+        </div>
+
+        <div class="reach" aria-label="Reach us">
+          <p class="reachTitle">Reach us:</p>
+
+          <div class="contactGrid">
+            <div class="contactItem">
+              <span class="contactLabel">Address</span>
+              1458/1. Street Alsancak İzmir
+            </div>
+
+            <div class="contactItem">
+              <span class="contactLabel">Email</span>
+              <a href="mailto:murphy.findinghome@gmail.com">murphy.findinghome@gmail.com</a>
+            </div>
+
+            <div class="contactItem">
+              <span class="contactLabel">Phone</span>
+              <a href="tel:+905325550194">+90 (532) 555 01 94</a>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- FOOTER TEXT -->
+    <div class="footerWrap">
+      <div class="footer">VCDS 2116 Visual Communication Design - Project 2- Tuana Serdar</div>
+    </div>
+
+  </div>
+</body>
+</html>
